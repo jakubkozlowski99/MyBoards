@@ -22,16 +22,20 @@ namespace MyBoards.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Issue>()
-                .Property(i => i.Efford).HasColumnType("decimal(5,2");
+                .Property(i => i.Efford)
+                .HasColumnType("decimal(5,2)");
 
             modelBuilder.Entity<Epic>()
-                .Property(e => e.EndDate).HasPrecision(3);
+                .Property(e => e.EndDate)
+                .HasPrecision(3);
 
-            modelBuilder.Entity<Task>(eb =>
-            {
-                eb.Property(t => t.Activity).HasMaxLength(200);
-                eb.Property(t => t.RemainingWork).HasPrecision(14, 2);
-            });
+            modelBuilder.Entity<Task>()
+                .Property(t => t.Activity)
+                .HasMaxLength(200);
+
+            modelBuilder.Entity<Task>()
+                .Property(t => t.RemainingWork)
+                .HasPrecision(14, 2);
 
             modelBuilder.Entity<WorkItem>(eb =>
             {
@@ -86,7 +90,7 @@ namespace MyBoards.Entities
             modelBuilder.Entity<WorkItemState>()
                 .Property(s => s.Value)
                 .IsRequired()
-                .HasMaxLength(50);
+                .HasMaxLength(60);
         }
     }
 }
